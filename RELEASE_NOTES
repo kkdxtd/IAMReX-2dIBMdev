@@ -1,0 +1,293 @@
+9/20/17
+Release version 17.09 (September, 2017)
+
+11/3/17
+Release version 17.11 (November, 2017)
+Small changes to documentation and code comments.
+Added a test problem with an input tracer being forced into the domain with an inflow jet.
+
+12/1/17 
+Release version 17.12 (December, 2017)
+Array -> Vector because Array has been deprecated in AMReX.
+Use the new MLMG Cell-Centered solver for mac projection, mac sync solves, and
+  scalar diffusion.
+Minor interfaces changes and comment fixes.
+
+1/3/18
+Release version 18.01 (January, 2018)
+Minor changes to quiet compiler warnings.
+Added tiling to hoop stress.
+
+2/1/18
+Release version 18.02 (February, 2018)
+Bug fixes to projection and diffusion boundary conditions
+Interfaces to the new MLMG linear solvers in amrex/Src/LinearSolvers/MLMG
+Cylindrical coordinate bux fixes
+
+4/1/18
+Release version 18.04 (April, 2018)
+comments and variable rennaming only
+
+6/1/18
+Release version 18.06 (June, 2018)
+Small changes to some problem setups
+Some improvements to the particle algorithm
+Fixed some ghost cell issues in the projection
+
+7/2/18
+Release version 18.07 (July, 2018)
+Fixed a 3D corner coupling bug in FPU advection for conserved quantities.
+Enabled FPU advection for scalars.
+Added new test problems for regression suite.
+Various minor fixes to other test problems.
+
+8/1/18
+Release version 18.08 (August, 2018)
+Minor changes to regression test options.
+Improved work distribution in create_umac_grown
+
+9/4/18
+Minor documentation updates.
+
+11/1/18
+Fix outflow bug.
+Added shear layer test problem.
+
+12/3/18
+Some outflow boundary condition fixes
+OpenMP and tiling additions
+
+1/2/19
+Some GPU work
+
+4/8/19
+Various problem fixes
+Various problem tweaks involving regridding
+Other minor fixes
+
+5/1/19
+Minor compiler settings fixes
+
+6/3/19
+Bug fix in filling u_mac ghost cells
+Fix create_umac_grown for periodic cases
+Misc code cleanup; extra arguments, extraneous calls, compiler quieting
+Parallel reduction cleanup
+Various changes to be consistent with AMReX interfaces
+
+7/3/19
+Bug fix SUMJET, these routines were compiled even if SUMJET was not defined
+Reducing the dependency of PeleLM to IAMR
+Putting back HIT test case
+Getting rid of GENGETFORCE, MOREGENGETFORCE, etc.. now FORT_MAKEFORCE is always compiled 
+     with the most general interface that was previously called by MOREGENGETFORCE
+Input parameters are now read in two separate routines: Initialize() and Initialize_specific()
+     in order to reduce dependency of PeleLM to IAMR
+Bug fix NavierStokesBase::velocity_advection_update()
+MLMG solver is now the only one implemented and used for Diffusion and MacProj
+
+8/1/19
+Cleaned up GNUMakeFiles
+Minor modification to Taylor Green test problem setup
+Fixed a tiling bug in diffusion_rearrangement
+
+9/3/19
+Minor bugfixes only, some to satisfy compiler warnings, some for thread safety,
+some for ghost cell filling when needed
+
+10/1/19
+Updates to ppm for GPU.
+Change in logic for setting dt when the velocity is zero
+
+11/1/19
+Switch many routines to dimension-agnostic (one common code no matter the dimensionality)
+
+12/2/19
+Minor interface cleanups and problem setups
+
+4/1/20
+**This is a major update since many branches were merged into development during
+the month of March
+Introducing complex geometries via EB.
+No longer supporting constant mu or RZ options.
+Update and add regression tests.
+Many updates to be compatible with changes to amrex
+Various bugfixes for host and GPU calculations  
+Various changes to problem setups
+
+5/1/20
+Assortment of minor bug fixes
+Tiling/GPU improvements
+AMReX interface updates
+Minor EB improvements
+
+6/1/20
+Various EB improvements
+Change default dt scaling in sync diffusion solve for PeleLM usage
+Various checks on number of ghost cells and divide by zeros.
+
+7/1/20
+Small tiling additions
+Small bug fixes, and minor EB and transport improvements
+
+8/3/20
+Volume weighted sum fixes
+Tiling fixes to estTimeStep
+Minor GPU fixes, particularly for linear solvers
+amrex::Math updates
+Various small bugfixes
+
+9/1/20
+Various memory, GPU, and EB-related improvements
+Minor code re-org
+Updates to various test problems
+Add aborts for ref_ratio=4 or rz (not currently supported)
+Remove dependency on C_CellMG in amrex and older solvers
+Various replacements of fortran kernels to C++
+
+10/1/20
+Various GPU updates
+Advection updates and bux fixes
+Other bugxies to miscellaneous routines
+
+11/2/20
+Various GPU updates for BCRec and create_umac_Grown
+Minor tiling fixes
+
+12/2/20
+Creation from Embiggen of a tool to extrapolate coarse checkpoint file to a finest mesh
+Add a "stop_interval" parameter to allow the simulation to stop at a specific additional time interval after the physical time of a restart checkpoint file
+Remove Dpdt_Type and code related to Pressure temporal-centeredness at a Point (vs. Interval)
+Test case updates
+
+1/4/21
+Various bugfixes relating to CUDA, statistics, restarting.
+Several changes to support time-averaging statistics and diagnostics.
+
+2/1/21
+Change spatial discretization of multilevel grad(p)
+Checkpointing fixes
+Many small updates to several parts of the code, including:
+  -Diffusion:diffuse_Ssync
+  -InflowForce
+  -GPU fixes
+  -Outflow BC solvers
+
+4/1/21
+Cleanup unused options, problems, and inputs files
+Fixes to ref_ratio=4 ghost cell bugs
+Port some initialization kernels to C++
+Port some derived functions to C++
+Port boundary filling functions to C++
+Ghost cell filling bugs
+New options for controlling regridding
+Minor GPU and memory fixes
+Remove fortran probin files
+Various RZ fixes
+
+5/3/21
+Updates to EB to be compatible with AMReX changes
+Updates and bugfixes to EB advection algorithm
+Fix out of bounds issues related to inadequate number of ghost cells
+Misc GPU fixes
+New homogeneous isotropic turbulence test case
+
+6/2/21
+Changes to some MAC projectino parameters
+Fixed issues with some derived quantities
+Checkpoint bug fix
+Fixes to hydrodynamics for GPU and EB
+Updates to MOL algorithm
+Fix: properly merged in changes from development
+
+7/2/21
+Documentation updates
+Embedded boundary improvements and fixes
+Updates to create_umac_grown for AMR hydro
+Misc. AMR fixes
+
+8/2/21
+Documentation
+Compiler warnings
+Misc. cleanup and re-org
+Various EB and advection updates and fixes
+
+9/1/21
+Diffusion changes - use new multicomponent MLMG solver
+In the temperature solve, let ns.temp_cond_coef represent (lambda/c_p)
+Hydrodynamic algorithm updates
+Updates to create_umac_grown
+Embedded boundary compile updates
+Add ParmParse for max_coarsening_level in nodal and mac projections
+Moved slope routines to AMReX-Hydro
+
+10/1/21
+Documentation reorganization
+Misc. AMR fixes
+Misc. cleanup (re-org, quiet compiler warnings, remove unused code)
+Misc. compiler fixes and general updates to test and benchmark problems
+
+11/2/21
+Various GPU fixes
+Cleanup to the advection and diffusion classes
+Fix usage of forcing term in scalar advection
+
+12/10/21
+Update Projection and MacProj to use nodal_proj and mac_proj, respectively, for runtime options.
+Misc bug fixes for special cases.
+Misc. cleanup -- quiet compiler warnings, remove unused and outdated variables and comments, make use of amrex functions where possible.
+Fix Docs typos.
+Updates to some regression tests for better code coverage.
+
+1/5/22
+Update IAMR to reflect AMReX-Hydro changes in State Redistribution -- the old StateRedist has been removed and NewStateRedist is renamed StateRedist.
+Clean up Tutorials.
+
+2/1/22
+Fix in create_umac_grown, and minor fixes in problem initialization.
+Allow rz with scalar diffusivity.
+Lower default tolerances for the sync.
+Minor clean up and updates to regression tests.
+
+3/1/22
+Add NSB::advection_scheme to choose the advection method used. This replaces use_godunov and godunov_use_ppm.
+Bug fix in Diffusion::computeExtensiveFluxes for RZ.
+Fix in velocity_advection for non-conservative MOL with divU!=0.
+Fix indexing error in host bcrec for EBGodunov in mac_sync. Only affects problems where the coarse-fine boundary interacts with a physical EXT_DIR or HOEXTRAP and also the coarse level .
+Misc clean up.
+
+4/1/22
+Bug fix in the MAC sync for diffusive scalars.
+Add option of Bell-Dawson-Shubin (BDS) advection scheme, a higher order Godunov method for scalar conservation laws.
+Bring back forced homogeneous isotropic turbulence problem set up.
+Misc clean up.
+
+5/1/22
+Minor documentation updates.
+
+6/1/22
+Fix for BDS to ensure Umac level 0 physical boundaries get filled.
+Add BDS documentation.
+Misc clean up.
+
+7/1/22
+Fix for BDS physical boundary fill.
+Fix Taylor-Green benchmark analysis.
+Misc clean up.
+
+8/1/22
+Fixes to create_umac_grown
+
+9/6/22
+Fix for multilevel RZ in filling Umac ghost cells. Create IAMR/Tutorials and reserve IAMR/Exec for regression tests. Remove MOL advection scheme. Update regression tests for removal of MOL, and also lower projection tolerance in EB double shear layer test. Update Documentation. Misc. minor clean up.
+
+10/4/22
+Restart bug fix: read probtype.
+Remove unmaintained option to compute a volume-weighted sum over a sub-region.
+
+11/1/22
+Fix bug in multilevel velocity sync. Misc code cleanup.
+
+12/1/22
+Allow BDS for velocity advection (but still not in computing MAC velocities). Note this changes behavior for advection_scheme=BDS option, which before only used BDS for scalars and used Godunov for velocity.
+Fix norm calculation in Tutorials/TaylorGreen/benchmarks. Minor clean up.
